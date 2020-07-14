@@ -8,9 +8,18 @@ public class ShooterSparkPID extends SubsystemBase {
     private final CANSparkMax shooterFollower = new CANSparkMax(14, CANSparkMaxLowLevel.MotorType.kBrushless);
     private final CANEncoder shooterEncoder = shooterLeader.getEncoder();
     private final CANPIDController pidController = shooterFollower.getPIDController();
-
-    public ShooterSparkPID() {}
-
+    private double targetVelocity = 0.0; 
+    public ShooterSparkPID() {
+        shooterFollower.follow(shooterLeader, true);
+        pidController.setP(1.7/300);
+        pidController.setI(0.0);
+        pidController.setD(5.5*14000);
+    }
+    public void setTargetVelocity(double Velocity){
+        targetVelocity = Velocity;
+    }
     @Override
-    public void periodic() {}
+    public void periodic() {
+        pidController.setReference(targetVelocity, ControlType.kVelocity);
+    }
 }
