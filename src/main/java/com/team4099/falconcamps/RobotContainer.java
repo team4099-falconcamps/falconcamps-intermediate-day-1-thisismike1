@@ -12,10 +12,9 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import io.github.oblarg.oblog.Loggable;
 import io.github.oblarg.oblog.annotations.Log;
 
-public class RobotContainer implements Loggable{
-     @Log 
-    private final ShooterPIDSubsystem subsystem = new ShooterPIDSubsystem();
-     private final ShooterSparkPID shooterSpark = new ShooterSparkPID();
+public class RobotContainer implements Loggable{ 
+    @Log private final ShooterPIDSubsystem subsystem = new ShooterPIDSubsystem();
+     @Log private final ShooterSparkPID shooterSpark = new ShooterSparkPID();
     XboxController driverController = new XboxController(0);
     public RobotContainer() {
         //new Trigger(driverController::getAButton).whenActive(new ShootPIDSubsystemCommand(subsystem));
